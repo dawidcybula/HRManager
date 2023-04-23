@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using HRManagerWeb.Configurations;
+using HRManagerWeb.Contracts;
+using HRManagerWeb.IRepositories;
+using HRManagerWeb.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,11 @@ builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireC
 builder.Services.AddControllersWithViews();
 //Automapper
 builder.Services.AddAutoMapper(typeof(MapperConfig));
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
+
+
 
 var app = builder.Build();
 
