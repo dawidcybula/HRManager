@@ -123,24 +123,6 @@ namespace HRManagerWeb.Controllers
             return View(leaveTypeVM);
         }
 
-        // GET: LeaveTypes/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null || _context.LeaveTypes == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var leaveType = await _context.LeaveTypes
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (leaveType == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(leaveType);
-        //}
-
         // POST: LeaveTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -154,6 +136,7 @@ namespace HRManagerWeb.Controllers
             if (leaveType != null)
             {
                 _context.LeaveTypes.Remove(leaveType);
+                TempData["success"] = "Deleted Succesfully";
             }
             
             await _context.SaveChangesAsync();
