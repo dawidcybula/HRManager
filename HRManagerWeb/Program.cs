@@ -17,6 +17,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+    
 builder.Services.AddControllersWithViews();
 //Automapper
 builder.Services.AddAutoMapper(typeof(MapperConfig));
