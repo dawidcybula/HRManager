@@ -9,6 +9,7 @@ namespace HRManagerWeb.Configurations
         public MapperConfig()
         {
             CreateMap<LeaveType, LeaveTypeVM>().ReverseMap();
+            CreateMap<Employee, EmployeeListVM>().ReverseMap();
         }
     }
 }

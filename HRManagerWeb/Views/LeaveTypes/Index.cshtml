@@ -41,6 +41,7 @@
                     <a asp-action="Edit" class="btn btn-dark" asp-route-id="@item.Id"><i class="bi bi-pencil"></i> Edit</a>
                     <a asp-action="Details" class="btn btn-dark" asp-route-id="@item.Id"><i class="bi bi-info-circle"></i> Details</a>
                     <button class="btn btn-danger deleteBtn" data-idval="@item.Id">Delete</button>
+                    <button class="btn btn-primary allocateBtn" data-idval="@item.Id">Allocate Leave</button>
             </td>
         </tr>
 }
@@ -48,6 +49,9 @@
 </table>
 <form id="deleteForm" asp-action="Delete">
     <input type="hidden" id="leavetypeid" name="id" />
+</form>
+<form id="alocationForm" asp-action="AllocateLeave">
+    <input type="hidden" id="leavetypeAllocationid" name="id" />
 </form>
 @section Scripts{
     <script>
@@ -71,5 +75,23 @@
                 });
             });
         });
+        $('.allocateBtn').click(function (e) {
+            swal({
+                title: "Are u sure?",
+                text: "Are you sure you want to allocate?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then((confirm) => {
+                if (confirm) {
+                    var btn = $(this);
+                    var id = btn.data("idval");
+                    $('#leavetypeAllocationid').val(id);
+                    $('#allocationForm').submit();
+
+                }
+            });
+        });
+                });
     </script>
 }

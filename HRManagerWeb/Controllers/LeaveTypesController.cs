@@ -15,11 +15,13 @@ namespace HRManagerWeb.Controllers
 
         private readonly ILeaveTypeRepository leaveTypeRepository;
         private readonly IMapper _mapper;
+        private readonly ILeaveAllocationRepository leaveAllocationRepository;
 
-        public LeaveTypesController(ILeaveTypeRepository leaveTypeRepository, IMapper mapper)
+        public LeaveTypesController(ILeaveTypeRepository leaveTypeRepository, IMapper mapper, ILeaveAllocationRepository leaveAllocation)
         {
             this.leaveTypeRepository = leaveTypeRepository;
             _mapper = mapper;
+            this.leaveAllocationRepository = leaveAllocation;
         }
 
         // GET: LeaveTypes
@@ -119,6 +121,13 @@ namespace HRManagerWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AllocateLeave(int id)
+        {
+           await leaveAllocationRepository.LeaveAllocation(id);
+           return RedirectToAction(nameof(Index));
+        }
        
     }
 }

@@ -14,7 +14,7 @@ namespace HRManagerWeb.Data
                 {
                     Id = "cac433ae-ffab-f791-1addb453ac61",
                     Name = Roles.Administrator,
-                    NormalizedName = Roles.User.ToUpper(),
+                    NormalizedName = Roles.Administrator.ToUpper(),
                 },
                 new IdentityRole
                 {

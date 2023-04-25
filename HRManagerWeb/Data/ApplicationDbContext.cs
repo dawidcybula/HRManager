@@ -2,6 +2,7 @@
 using HRManagerWeb.Configurations.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using HRManagerWeb.Models;
 
 namespace HRManagerWeb.Data
 {
@@ -22,6 +23,7 @@ namespace HRManagerWeb.Data
         }
         public DbSet<LeaveType> LeaveTypes { get; set; }
         public DbSet<LeaveAllocation> LeaveAllocations { get; set; }
+   
 
     }
 }

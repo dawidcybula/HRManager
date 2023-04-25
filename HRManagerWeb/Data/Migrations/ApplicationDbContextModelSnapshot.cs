@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace HRManagerWeb.Data.Migrations
+namespace HRManagerWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -106,7 +106,7 @@ namespace HRManagerWeb.Data.Migrations
                         {
                             Id = "19f433ae-aacb-f721-abc57195deab",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "44025bac-6004-4ff8-afb9-21fb961cec26",
+                            ConcurrencyStamp = "22a88a70-0009-4a1d-abbe-a25d8180a1cb",
                             DateofBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@users.com",
                             EmailConfirmed = false,
@@ -115,10 +115,12 @@ namespace HRManagerWeb.Data.Migrations
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@USERS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIStotH8OvPJG1ZLrXQHSU5kPB2vlFCXXmZmGJULRIaSdGsgaXx/4FajaA/0kIEqoQ==",
+                            NormalizedUserName = "ADMIN@USERS.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO3wB/P69eg+3obMYwvbJHARbq4WN3LoR34mnRC08peyuYFkxNlrczPxYK1TilVFXA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d0bccf12-1c94-4c54-95f9-782a352e3201",
-                            TwoFactorEnabled = false
+                            SecurityStamp = "12cfa1ac-ddd3-4b41-b0db-012415fec073",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@users.com"
                         });
                 });
 
@@ -146,11 +148,14 @@ namespace HRManagerWeb.Data.Migrations
                     b.Property<int>("NumberOfDays")
                         .HasColumnType("int");
 
+                    b.Property<int>("Period")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LeaveTypeId");
 
-                    b.ToTable("LeaveAllocations", (string)null);
+                    b.ToTable("LeaveAllocations");
                 });
 
             modelBuilder.Entity("HRManagerWeb.Data.LeaveType", b =>
@@ -176,7 +181,7 @@ namespace HRManagerWeb.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LeaveTypes", (string)null);
+                    b.ToTable("LeaveTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -209,14 +214,14 @@ namespace HRManagerWeb.Data.Migrations
                         new
                         {
                             Id = "cac433ae-ffab-f791-1addb453ac61",
-                            ConcurrencyStamp = "bffb70b4-e879-43ef-b43e-05377c4cc59d",
+                            ConcurrencyStamp = "c733bdbb-e6c1-4124-be5a-2ccd5df058e8",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "41c433ae-ffab-1ou1-1abda403efd4",
-                            ConcurrencyStamp = "7f716cea-06f4-4105-8d99-8b838982d435",
+                            ConcurrencyStamp = "1a9ecbc7-faf3-40ab-be23-bdb34c22feb6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
