@@ -14,15 +14,17 @@ namespace HRManagerWeb.Configurations.Entities
                 new Employee
                 {
                     Id = "19f433ae-aacb-f721-abc57195deab",
-                    Email= "admin@users.com",
+                    Email = "admin@users.com",
+                    UserName = "admin@users.com",
                     NormalizedEmail = "ADMIN@USERS.COM",
-                    FirstName= "System",
-                    LastName= "Admin",
-                    PasswordHash = hasher.HashPassword(null,"P@ssword1")
+                    FirstName = "System",
+                    LastName = "Admin",
+                    PasswordHash = hasher.HashPassword(null, "P@ssword1"),
+                    EmailConfirmed = true
                 }
-            
 
-                );
+
+                ); ;
 
         }
     }

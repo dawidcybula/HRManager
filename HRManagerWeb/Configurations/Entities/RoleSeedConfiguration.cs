@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HRManagerWeb.Constants;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,17 +13,17 @@ namespace HRManagerWeb.Data
                 new IdentityRole
                 {
                     Id = "cac433ae-ffab-f791-1addb453ac61",
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR",
+                    Name = Roles.Administrator,
+                    NormalizedName = Roles.User.ToUpper(),
                 },
                 new IdentityRole
                 {
                     Id = "41c433ae-ffab-1ou1-1abda403efd4",
-                    Name = "User",
-                    NormalizedName = "USER",
+                    Name = Roles.User,
+                    NormalizedName = Roles.User.ToUpper(),
                 }
 
-                );
+                ); ;
 
         }
     }

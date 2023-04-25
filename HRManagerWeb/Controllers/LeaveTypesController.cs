@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HRManagerWeb.Data;
 using AutoMapper;
 using HRManagerWeb.Models;
 using HRManagerWeb.IRepositories;
+using Microsoft.AspNetCore.Authorization;
+using HRManagerWeb.Constants;
 
 namespace HRManagerWeb.Controllers
 {
+    [Authorize(Roles = Roles.Administrator)]
     public class LeaveTypesController : Controller
     {
 
