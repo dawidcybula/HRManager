@@ -1,0 +1,65 @@
+﻿@model HRManagerWeb.Models.EmployeeAllocationVM
+
+@{
+    ViewData["Title"] = "View Allocations";
+}
+
+<h1>View Allocations for user @Model.FirstName @Model.LastName</h1>
+
+<div>
+    <h4>EmployeeAllocationVM</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.JoinDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.JoinDate)
+        </dd>
+        
+    </dl>
+</div>
+<h4>Leave Allocations</h4>
+<div class="card" style="width: 30rem;">
+    <ul class="list-group list-group-flush">
+        
+            @foreach (var allocation in Model.LeaveAllocations)
+            {
+                 <li class="list-group-item">
+                     @allocation.LeaveType.Name
+                     <button type = "button" class=" btn btn-primary">
+                         Allocated Days <span class="badge bg-secondary">@allocation.LeaveType.DefaultDays</span>
+                     </button>
+                     <button type="button" class=" btn btn-primary">
+                          Remaining Days Days <span class="badge bg-secondary">@allocation.NumberOfDays</span>
+                     </button>
+                 </li>
+            
+            }
+
+        
+        
+    </ul>
+</div>
+<div>
+   
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>

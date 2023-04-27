@@ -10,6 +10,11 @@ namespace HRManagerWeb.Configurations
         {
             CreateMap<LeaveType, LeaveTypeVM>().ReverseMap();
             CreateMap<Employee, EmployeeListVM>().ReverseMap();
+            CreateMap<Employee, EmployeeAllocationVM>().ReverseMap();
+            CreateMap<LeaveAllocation,LeaveAllocationVM >().ReverseMap();
+            CreateMap<LeaveRequest,LeaveCreateRequestVM >().ReverseMap();
+            CreateMap<LeaveRequest, LeaveRequestVM>().ReverseMap();
+
         }
     }
 }

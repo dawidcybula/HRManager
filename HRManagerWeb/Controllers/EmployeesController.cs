@@ -1,22 +1,27 @@
 ﻿using AutoMapper;
 using HRManagerWeb.Constants;
 using HRManagerWeb.Data;
+using HRManagerWeb.IRepositories;
 using HRManagerWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagerWeb.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly UserManager<Employee> userManager;
         private readonly IMapper mapper;
+        private readonly ILeaveAllocationRepository leaveAllocationRepository;
 
-        public EmployeesController(UserManager<Employee> userManager, IMapper mapper)
+        public EmployeesController(UserManager<Employee> userManager, IMapper mapper, ILeaveAllocationRepository leaveAllocationRepository)
         {
             this.userManager = userManager;
             this.mapper = mapper;
+            this.leaveAllocationRepository = leaveAllocationRepository;
         }
         // GET: EmployeesController
         public async Task<IActionResult> Index()
@@ -26,10 +31,11 @@ namespace HRManagerWeb.Controllers
             return View(model);
         }
 
-        // GET: EmployeesController/ViewAllocations/5
-        public ActionResult ViewAllocations(int id)
+        // GET: EmployeesController/ViewAllocations/employeeid
+        public async Task<IActionResult> ViewAllocations(string id)
         {
-            return View();
+            var  leaveallocations = await leaveAllocationRepository.GetEmployeeLeaveAllocation(id);
+            return View(leaveallocations);
         }
 
         // GET: EmployeesController/Create

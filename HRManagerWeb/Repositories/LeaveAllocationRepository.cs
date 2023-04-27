@@ -1,6 +1,8 @@
-﻿using HRManagerWeb.Constants;
+﻿using AutoMapper;
+using HRManagerWeb.Constants;
 using HRManagerWeb.Data;
 using HRManagerWeb.IRepositories;
+using HRManagerWeb.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -12,14 +14,19 @@ namespace HRManagerWeb.Repositories
         private readonly ApplicationDbContext _dbconext;
         private readonly UserManager<Employee> _userManager;
         private readonly ILeaveTypeRepository leaveTypeRepository;
+        private readonly IMapper mapper;
 
         public LeaveAllocationRepository(ApplicationDbContext dbconext,
             UserManager<Employee> usermanager,
-            ILeaveTypeRepository leaveTypeRepository) : base(dbconext)
+            ILeaveTypeRepository leaveTypeRepository,
+            IMapper mapper
+            
+            ) : base(dbconext)
         {
             this._dbconext = dbconext;
             this._userManager = usermanager;
             this.leaveTypeRepository = leaveTypeRepository;
+            this.mapper = mapper;
         }
 
         public async Task<bool> AllocationExists(string employeeId, int leaveTypeId, int period)
@@ -28,6 +35,21 @@ namespace HRManagerWeb.Repositories
             && x.LeaveTypeId == leaveTypeId 
             && x.Period == period
             );
+        }
+
+        public async Task<EmployeeAllocationVM> GetEmployeeLeaveAllocation(string employeeId)
+        {
+            var allocations = await _dbconext.LeaveAllocations
+                .Include(x => x.LeaveType)
+                .Where(x => x.EmployeeId == employeeId)
+                .ToListAsync();
+
+            var employee = await _userManager.FindByIdAsync(employeeId);
+           
+            var employeealocationmodel = mapper.Map<EmployeeAllocationVM>(employee);
+            employeealocationmodel.LeaveAllocations = mapper.Map<List<LeaveAllocationVM>>(allocations);
+
+            return employeealocationmodel;
         }
 
         public async Task LeaveAllocation(int LeaveTypeId)
@@ -40,12 +62,14 @@ namespace HRManagerWeb.Repositories
             {
                 if (await AllocationExists(employee.Id, leaveType.Id, period))
                     continue;
+
                 allocations.Add(new LeaveAllocation
                 {
                     EmployeeId = employee.Id,
                     LeaveTypeId = LeaveTypeId,
                     Period = period,
                     NumberOfDays = leaveType.DefaultDays
+                    
                 });
                 
             }

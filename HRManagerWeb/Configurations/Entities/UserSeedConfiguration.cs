@@ -21,6 +21,17 @@ namespace HRManagerWeb.Configurations.Entities
                     FirstName = "System",
                     LastName = "Admin",
                     PasswordHash = hasher.HashPassword(null, "P@ssword1"),
+                },
+                new Employee
+                {
+                    Id = "16f433ae-aacb-f721-def57195deab",
+                    Email = "normaluser@users.com",
+                    NormalizedEmail = "NORMALUSER@USERS.COM",
+                    UserName = "normaluser@users.com",
+                    NormalizedUserName = "NORMALUSER@USERS.COM",
+                    FirstName = "Normal",
+                    LastName = "User",
+                    PasswordHash = hasher.HashPassword(null, "P@ssword1"),
                 }
 
 

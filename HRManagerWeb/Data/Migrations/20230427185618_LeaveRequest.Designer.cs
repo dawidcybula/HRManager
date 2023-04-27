@@ -4,6 +4,7 @@ using HRManagerWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRManagerWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230427185618_LeaveRequest")]
+    partial class LeaveRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,7 +108,7 @@ namespace HRManagerWeb.Migrations
                         {
                             Id = "19f433ae-aacb-f721-abc57195deab",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d598e444-8e79-4bb4-ad1b-f9e1dfd14bf4",
+                            ConcurrencyStamp = "58a2230e-7cc0-4db3-822b-22eb6cfa752a",
                             DateofBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@users.com",
                             EmailConfirmed = false,
@@ -116,31 +118,11 @@ namespace HRManagerWeb.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@USERS.COM",
                             NormalizedUserName = "ADMIN@USERS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOwGT8ywRHWLkPNgaqiQRByRnMJMZ6KB4ueO11u3PkNQOvo2imQeoNHJhpQytr1PnQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJK6lF42uzvXi/UbZESthIjW3wjNnkEkcyUfb0fdJtGkZSHmpNoGTSFVxCNH23Lpdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "93c295c3-2806-4fe1-be0c-fc9491d00337",
+                            SecurityStamp = "87a7cd70-17ef-4dba-9245-5eb85247be50",
                             TwoFactorEnabled = false,
                             UserName = "admin@users.com"
-                        },
-                        new
-                        {
-                            Id = "16f433ae-aacb-f721-def57195deab",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "0b81de8a-4302-4e6b-8ecb-93c0be28610e",
-                            DateofBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "normaluser@users.com",
-                            EmailConfirmed = false,
-                            FirstName = "Normal",
-                            JoinDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastName = "User",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "NORMALUSER@USERS.COM",
-                            NormalizedUserName = "NORMALUSER@USERS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAnnHvqY2Sdf6Zx1nDzOLzLPvys16nU8qMKKz1okvckqQqJZsaxRAUUnYQJS7jSZDA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "2459cfc2-1f2c-49bd-bcab-ae93db7d351b",
-                            TwoFactorEnabled = false,
-                            UserName = "normaluser@users.com"
                         });
                 });
 
@@ -208,6 +190,7 @@ namespace HRManagerWeb.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RequestComment")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RequestingEmployeeId")
@@ -280,14 +263,14 @@ namespace HRManagerWeb.Migrations
                         new
                         {
                             Id = "cac433ae-ffab-f791-1addb453ac61",
-                            ConcurrencyStamp = "01656dcf-b7c3-408b-b506-e2f11b3f7d18",
+                            ConcurrencyStamp = "e03380e4-9fd9-49de-b2d3-13ea92cb95f6",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "41c433ae-ffab-1ou1-1abda403efd4",
-                            ConcurrencyStamp = "198358ad-7a86-44af-a11b-09c6448a1afb",
+                            ConcurrencyStamp = "0a3ecc90-de4e-489c-8a68-6a9353f5e495",
                             Name = "User",
                             NormalizedName = "USER"
                         });
